@@ -53,8 +53,4 @@ with open(election_csv, newline="") as csvfile:
     print ("Winner:" + winner, file = output_file)
     print ("------------------------------", file = output_file)
 
-
-# Set variable for output file
-    
-    print(winner, file = output_file)
     output_file.close()
