@@ -16,7 +16,6 @@ with open(election_csv, newline="") as csvfile:
     csv_header = next(csvreader)
     name_votes = {}
     total_votes = 0
-    i = 0
     winner = str()
     # Read each row of data after the header
     for row in csvreader:  
@@ -28,10 +27,7 @@ with open(election_csv, newline="") as csvfile:
         else:
             name_votes.update({name : 1})
     #print("name_votes")
-    print("Election Results")
-    print ("------------------------------")
-    print(f"Total Votes:" ,total_votes)
-    print ("------------------------------")
+    
     for keys, values in name_votes.items():
         print(keys + ": " +  str(round(values/total_votes*100, 5))  + "% (" + str(values) + ")")
         
@@ -47,23 +43,18 @@ with open(election_csv, newline="") as csvfile:
             if values > max_votes:
                 winner = keys
     
-    #print(winner)
-    
-    #print("name_votes")
-    #print("Election Results")
-    #print ("------------------------------")
-    #print(f"Total Votes:" ,len(total_votes))
-    #print ("------------------------------")
-    #print (f"Khan:"  )
-    #print (f"Correy:" )    
-    #print (f"Li:"  )    
-    #print (f"O'Tooley:", )        
-    print ("------------------------------")
-    print("Winner:" + winner)
-    print ("------------------------------")
+    output_file = open("output.txt", "w")
+    print("Election Results", file = output_file)
+    print (f"------------------------------", file = output_file)
+    print (f"Total Votes:" ,total_votes, file = output_file)
+    print ("------------------------------", file = output_file)    
+    print(keys + ": " +  str(round(values/total_votes*100, 5))  + "% (" + str(values) + ")", file = output_file)
+    print ("------------------------------", file = output_file)
+    print ("Winner:" + winner, file = output_file)
+    print ("------------------------------", file = output_file)
 
 
 # Set variable for output file
-    output_file = open("output.txt", "w")
+    
     print(winner, file = output_file)
     output_file.close()
